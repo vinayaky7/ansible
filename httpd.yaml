@@ -1,0 +1,31 @@
+---
+- name: This sets up an httpd webserver
+  hosts: webservers
+  tasks:
+  - name: Install apache packages
+    yum:
+      name: httpd
+      state: present
+  - name: ensure httpd is running
+    service:
+      name: httpd
+      state: started
+  - name: running random commands
+    command: /usr/bin/cat /root/.ssh/authorized_keys
+#  - name: creating index file
+#    file:
+#      path: "/var/www/html/index.html"
+#      state: touch
+#  - name: echoing text
+#    shell: printf 'Hello' >> /var/www/html/index.html
+#    register: shell_result
+# - debug:
+#      var: shell_result.stdout_lines
+  - name: Install git packages
+    yum:
+      name: git
+      state: present
+  - name: Cloning repository
+    args:
+      chdir: /var/www
+    shell: git clone https://gitlab.com/andromeda99/html.git
