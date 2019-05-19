@@ -1,0 +1,7 @@
+- hosts: ansibleclient1
+  tasks:
+  - name: ansible create directory example
+    file:
+      path: /tmp/devops_directory
+      state: directory
+      mode: "u=rwx,g=,o="
