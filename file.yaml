@@ -1,0 +1,11 @@
+- hosts: ansibleclient1
+  tasks:
+  - name: Ansible create new file with permissions example.
+    file:
+      path: "/tmp/devops.txt"
+      state: touch
+      mode: 0644
+      owner: jordan
+  - name: echoing text
+    shell: printf 'Hello Team' >> /tmp/devops.txt
+    register: shell_result
