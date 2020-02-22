@@ -1,0 +1,8 @@
+---
+- hosts: ansibleclient
+  tasks:
+  - name: Create a login user
+    user:
+      name: jordan1
+      password: 'supp0rt'
+      state: present

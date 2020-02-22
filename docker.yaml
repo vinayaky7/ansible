@@ -1,0 +1,19 @@
+---
+- name: This sets up an httpd webserver
+  hosts: webservers
+  tasks:
+  - name: Installing Docker
+    yum:
+      name: docker
+      state: present
+  - name: ensure docker is running
+    service:
+      name: docker
+      state: started
+  - name: installing docker image
+    shell: docker pull centos
+    register: shell_result
+  - name: Creating test container
+    shell: docker run -itd --name=ansible_automation centos
+    shell: docker run -itd -v /tmp/devops_directory:/tmp  --name=ansibel_vol centos
+    register: shell_result
