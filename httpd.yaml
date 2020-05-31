@@ -10,8 +10,9 @@
        - Start Httpd
   handlers:
     - name: Start httpd
-      service: name=httpd 
-      state=started
+      service: 
+        name=httpd 
+        state=started
       
   - name: ensure httpd is running
     service:
