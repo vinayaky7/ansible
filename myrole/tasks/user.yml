@@ -1,0 +1,9 @@
+---
+- user:
+    name: jordan
+    password: 'supp0rt'
+    state: present
+    shell: /bin/bash       # Defaults to /bin/bash
+    createhome: yes        # Defaults to yes
+    home: /home/jordan  # Defaults to /home/<username>
+

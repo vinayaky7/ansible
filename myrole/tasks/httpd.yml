@@ -1,0 +1,17 @@
+---
+- yum: pkg=httpd state=installed
+  notify:
+    - Start Httpd
+- template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+
+- copy: src=index.html dest=/var/www/html/index.html
+
+#- service:
+#     name: httpd
+#     state: started
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+---
+#tasks file for myrole
+
+- name: Install Apache
+  include_tasks: "{{ item }}"
+  loop: 
+    - httpd.yml
+    - git.yml
+    - user.yml
