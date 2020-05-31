@@ -16,7 +16,6 @@
   - debug: 
       var: shell_result
   - name: Creating test container
-    shell: docker run -itd --name=ansible_automation centos
     shell: docker run -itd -v /tmp/devops_directory:/tmp  --name=ansibel_vol centos
     register: shell_result
   - debug: 
