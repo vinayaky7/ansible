@@ -16,7 +16,11 @@
   - debug: 
       var: shell_result
   - name: Creating test container
-    shell: docker run -itd -v /tmp/devops_directory:/tmp  --name=ansibel_vol centos
+    command: "{{ item }}"
+    with_items:
+    - docker run -itd --name=ansibel_test centos
+    - docker run -itd -v /tmp/aamir_directory:/tmp --name=ansibel_vol centos
+#    shell: docker run -itd -v /tmp/devops_directory:/tmp  --name=ansibel_vol centos
     register: shell_result
   - debug: 
       var: shell_result
