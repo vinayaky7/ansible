@@ -1,42 +1,43 @@
 ---
 - name: This sets up an httpd webserver
-  hosts: webservers
+  hosts: ansible-client1
   tasks:
   - name: running random commands
     command: /usr/bin/cat /root/.ssh/authorized_keys
-    
+
   - name: Install git packages
     yum:
      name: git
      state: present
-     
-  - name: Cloning repository
-    args:
-      chdir: /var/www
-    shell: git clone https://gitlab.com/andromeda99/html.git
-    
+
+#  - name: Cloning repository
+#    args:
+#      chdir: /var/www
+#    shell: git clone https://gitlab.com/andromeda99/html.git
+
   - name: creating index file
     file:
       path: "/tmp/test.txt"
       state: touch
-      
+
   - name: echoing text
     shell: printf 'Hello' >> /tmp/test.txt
     register: shell_result
-    
+
   - name: Install apache packages
     yum: pkg=httpd state=installed
     notify:
        - Start Httpd
+  - name: Cloning repository
+    args:
+      chdir: /var/www
+    shell: git clone https://gitlab.com/andromeda99/html.git
   - name: ensure httpd is running
     service:
       name: httpd
       state: started
-    
-       
+
+
   handlers:
     - name: Start Httpd
       service: name=httpd state=started
-      
-      
-      
