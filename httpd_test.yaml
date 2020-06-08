@@ -9,10 +9,6 @@
     yum:
      name: git
      state: present
-<<<<<<< Updated upstream
-=======
-     
->>>>>>> Stashed changes
 #  - name: Cloning repository
 #    args:
 #      chdir: /var/www

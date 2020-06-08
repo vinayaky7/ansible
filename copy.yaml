@@ -1,0 +1,6 @@
+- hosts: ansible-client1
+  tasks:
+  - name: Ansible copy file to remote server
+    copy:
+      src: /root/ansible/ansible/sample.txt
+      dest: /tmp 

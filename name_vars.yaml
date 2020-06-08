@@ -1,0 +1,4 @@
+---
+
+variable_to_be_replaced: 'Hello world'
+inline_variable: 'hello again'
