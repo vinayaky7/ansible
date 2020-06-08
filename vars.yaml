@@ -1,0 +1,26 @@
+---
+ - hosts: ansible-client1
+   vars:
+     salutations: Hello guys!
+     continents:
+       - Africa
+       - Asia
+       - South America
+       - North America
+       - Europe
+     continent: [Africa, Asia, South America, North America, Europe]
+   
+   tasks:
+   - name: Ansible Variable Basic Usage
+     debug:
+       msg: "{{ salutations }}"
+   
+   - name:  Ansible Variable Basic Usage 2
+     debug:
+       msg: "{{ continents }}"
+
+   - name:  Ansible Variable Basic Usage 2
+     debug:
+       msg: "{{ item  }}"
+     with_items:
+      - "{{ continent [1] }}"
