@@ -1,5 +1,5 @@
 ---
-- hosts: ansibleclient
+- hosts: ansible-client1
   tasks:
   - name: Create a login user
     user:

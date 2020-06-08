@@ -1,6 +1,6 @@
 ---
 - name: This sets up a Docker server
-  hosts: webservers
+  hosts: ansible-client1
   vars:
       vol: /tmp/myworkspace
       random_number: "{{ 100 | random }}"

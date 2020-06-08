@@ -9,12 +9,11 @@
     yum:
      name: git
      state: present
-
 #  - name: Cloning repository
 #    args:
 #      chdir: /var/www
 #    shell: git clone https://gitlab.com/andromeda99/html.git
-
+    
   - name: creating index file
     file:
       path: "/tmp/test.txt"

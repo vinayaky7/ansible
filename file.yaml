@@ -1,4 +1,5 @@
-- hosts: ansibleclient
+---
+- hosts: ansible-client1
   tasks:
   - name: Ansible create new file with permissions example.
     file:
