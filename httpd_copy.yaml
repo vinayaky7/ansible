@@ -1,0 +1,28 @@
+---
+- name: This sets up an httpd webserver
+  hosts: webservers
+  vars_files:
+       - secrets.yml
+  vars:
+       - destdir: /var/www/html
+  tasks:
+  - name: Install apache packages
+    yum:
+      name: httpd
+      state: present
+
+  - name: ensure httpd is running
+    service:
+      name: httpd
+      state: started
+
+
+  - name: Install git packages
+    yum:
+      name: git
+      state: present
+  - name: Cloning git repository from gitlab using username & password
+    become: yes
+    git:
+       repo: 'https://{{gituser}}:{{gitpass}}@gitlab.com/andromeda99/html.git'
+       dest: "{{ destdir }}"
