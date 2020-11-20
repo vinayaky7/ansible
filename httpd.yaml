@@ -1,16 +1,25 @@
 ---
 - name: This sets up an httpd webserver
   hosts: webservers
+  vars_files:
+       - secrets.yml
+  vars:
+       - destdir: /var/www/html
   tasks:
   - name: Install apache packages
     yum:
       name: httpd
       state: present
       
-  - name: ensure httpd is running
+  - name: Start httpd service
     service:
       name: httpd
       state: started
+
+  - name: Enable service httpd
+    service:
+    name: httpd
+    enabled: yes
       
   - name: running random commands
     command: /usr/bin/cat /root/.ssh/authorized_keys
@@ -27,9 +36,12 @@
       name: git
       state: present
   - name: Cloning repository
-    args:
-      chdir: /var/www
-    shell: git clone https://gitlab.com/andromeda99/html.git
- 
-    
+    git:
+       repo: 'https://{{gituser}}:{{gitpass}}@gitlab.com/andromeda99/html.git'
+       dest: "{{ destdir }}"
+  - name: fetching Public IP
+    shell: host myip.opendns.com resolver1.opendns.com | grep address
+    register: shell_result
+  - debug:
+      var: shell_result    
     

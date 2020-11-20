@@ -1,7 +1,9 @@
-- hosts: ansible-client1
-  vars:
-    variable_to_be_replaced: 'Hello world'
-    inline_variable: 'hello again'
+- hosts: ansibleclient1
+#  vars:
+#    variable_to_be_replaced: 'Hello world'
+#    inline_variable: 'hello again'
+  vars_files:
+       - name_vars.yaml
   tasks:
     - name: Ansible Template Example
       template:

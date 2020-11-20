@@ -1,8 +1,8 @@
 ---
-- hosts: ansible-client1
+- hosts: webservers
   tasks:
 #  vars: 
 #    base_port: 8888
     - include_vars: vars/name_vars.yml
   roles: 
-    - /root/ansible/ansible/myrole
+    - /root/ansible/myrole

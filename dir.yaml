@@ -1,5 +1,5 @@
 ---
-- hosts: ansible-client1
+- hosts: ansibleclient1
   tasks:
   - name: ansible create directory example
     file:

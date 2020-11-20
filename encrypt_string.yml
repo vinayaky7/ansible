@@ -1,34 +1,34 @@
 ---
 - name: inline secret variable demonstration
-  hosts: ansibleclient-1
+  hosts: webservers
   gather_facts: false
 
   vars:
-    my_secret: !vault |
+    my_secret_var: !vault |
           $ANSIBLE_VAULT;1.1;AES256
-          31636364356639393666373061333265316135383430613538363963333836316133323932643136
-          3263373038303137643434626266343138326562313339630a363937666161363637646536333463
-          39383832633862666633363935313738313032353766623532396362643730376661643632653961
-          3939323738663932660a343231316664643237616637383536616161326335663139303236623236
-          3362
+          30616361616238653533623234393434383031306562316466346363643638636135323839376365
+          3833666431303635313537383135373731623531376232360a346161396136376363633966646561
+          63353661396565316561383733316436353662326332313733336434316161636437646364643732
+          3663663439613930340a303031616637663763316462383530616466363533346366666366333432
+          6332
   tasks:
     - name: print the secure variable
       debug:
-        msg: "My pass is {{my_secret}}"
+        msg: "My pass is {{my_secret_var}}"
 
     - name: print the secure variable
       debug:
-        var: my_secret
+        var: my_secret_var
 
 
     - name: Using command to print my_secret
-      command: /usr/bin/echo "My pass is {{my_secret}}"
+      command: /usr/bin/echo "My pass is {{my_secret_var}}"
       register: shell_result
     - debug:
         var: shell_result
 
     - name: Using shell to print my_secret
-      shell: echo "My pass is {{my_secret}}"
+      shell: echo "My pass is {{my_secret_var}}"
       register: shell_output
     - debug:
         var: shell_output

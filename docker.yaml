@@ -1,8 +1,8 @@
 ---
 - name: This sets up a Docker server
-  hosts: ansible-client1
+  hosts: ansibleclient1
   vars:
-      vol: /tmp/myworkspace
+      vol: /tmp/myefs/docker_volume
       random_number: "{{ 100 | random }}"
   tasks:
   - name: Installing Docker

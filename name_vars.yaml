@@ -1,4 +1,3 @@
 ---
-
-variable_to_be_replaced: 'Hello world'
-inline_variable: 'hello again'
+variable_to_be_replaced: 'Good Morning Devops'
+inline_variable: 'Good Evening Devops'
