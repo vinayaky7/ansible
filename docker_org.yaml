@@ -1,9 +1,6 @@
 ---
 - name: This sets up a Docker server
   hosts: ansibleclient1
-  remote_user: ec2-user
-  become: true
-  become_method: sudo
   vars:
       vol: /tmp/myefs/docker_volume/
 
@@ -24,9 +21,14 @@
     service:
       name: docker
       enabled: yes
+  - name: Pulling Dockerfile as a snippet
+    shell: git clone https://gitlab.com/snippets/2041720.git
+    register: shell_result
+  - debug:
+      var: shell_result
   - name: Build Docker Image
     args:
-      chdir: "{{ vol }}"
+      chdir: 2041720
     shell: docker build -t myweb:v1.0 .
     register: shell_result
   - debug:
