@@ -18,8 +18,8 @@
 
   - name: Enable service httpd
     service:
-    name: httpd
-    enabled: yes
+      name: httpd
+      enabled: yes
       
   - name: running random commands
     command: /usr/bin/cat /root/.ssh/authorized_keys
@@ -45,3 +45,4 @@
   - debug:
       var: shell_result    
     
+

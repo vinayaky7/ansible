@@ -7,6 +7,9 @@
       state: touch
       mode: 0644
       owner: jordan
+      group: jordan
   - name: echoing text
-    shell: printf 'Hello Team' >> /tmp/devops.txt
+    shell: printf 'Hello radical' >> /tmp/devops.txt
     register: shell_result
+  - debug:
+      var: shell_result
