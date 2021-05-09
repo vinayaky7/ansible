@@ -1,6 +1,9 @@
 ---
 - name: This sets up a Docker server
   hosts: ansibleclient1
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
   vars:
       vol: /tmp/myefs/docker_volume/
 
@@ -21,11 +24,23 @@
     service:
       name: docker
       enabled: yes
-  - name: Pulling Dockerfile as a snippet
-    shell: git clone https://gitlab.com/snippets/2041720.git
+  - name: Checking local Directory to pull Dockerfile code snippet from gitlab
+    stat: 
+      path: /root/2041720
     register: shell_result
+
+  - name: Cloning Gitlab snippet 
+    shell: git clone https://gitlab.com/snippets/2041720.git
+    when: not shell_result.stat.exists
+    register: my_output
   - debug:
-      var: shell_result
+      var: my_output
+
+  - name: Final check gitlab snippet
+    debug:
+      msg: "/root/2041720 directory exists"
+    when: shell_result.stat.exists
+
   - name: Build Docker Image
     args:
       chdir: 2041720
