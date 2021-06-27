@@ -9,7 +9,7 @@
       owner: jordan
       group: jordan
   - name: echoing text
-    shell: printf 'Hello radical' >> /tmp/devops.txt
-    register: shell_result
+    shell: printf 'Hello Team. Whats UP' > /tmp/devops.txt
+    register: my_result
   - debug:
-      var: shell_result
+      var: my_result
