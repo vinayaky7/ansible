@@ -24,6 +24,10 @@
     service:
       name: docker
       enabled: yes
+  - name: Installing Git
+    yum:
+      name: git
+      state: present
   - name: Checking local Directory to pull Dockerfile code snippet from gitlab
     stat: 
       path: /root/2041720
