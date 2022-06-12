@@ -23,10 +23,13 @@
      debug:
        msg: "{{ item  }}"
      with_items:
-      - I am in {{ var3 [1] }}
+      - I am in {{ var3 [0] }}
 
    - name: Storing the output to a variable & printing it
      shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
      register: shell_result
    - debug:
       msg: Public IP of VM is {{ shell_result.stdout }}
+
+   - debug:
+       var: shell_result
