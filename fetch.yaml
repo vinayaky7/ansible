@@ -1,0 +1,6 @@
+- hosts: radical-bastion
+  tasks:
+  - name: Ansible copy file to remote server
+    fetch:
+      src: /tmp/sample.txt
+      dest: /tmp
