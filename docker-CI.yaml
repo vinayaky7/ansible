@@ -1,0 +1,75 @@
+---
+- name: This sets up a Docker server
+  hosts: localhost
+  #remote_user: ec2-user
+  #become: true
+  #become_method: sudo
+  vars_files:
+       - docker_token.yml
+  vars:
+      vol: "/tmp/myefs/docker_volume/"
+      IMAGE: "radical-weekdays-june-2022"
+      WORKSPACE: "/var/lib/jenkins/workspace/radical"
+      DockerHub_repo: "aamirs/radical-private-repo"
+      VER: "9am"
+
+  tasks:
+  - name: set fact here
+    set_fact:
+      random_number: "{{ 100 | random }}"
+    run_once: yes
+
+  - name: Installing Docker
+    yum:
+      name: docker
+      state: present
+
+  - name: Start Docker Service
+    service:
+      name: docker
+      state: started
+
+  - name: Enable Docker Service
+    service:
+      name: docker
+      enabled: yes
+
+  - name: Build Docker Image
+    args:
+      chdir: "{{ WORKSPACE }}"
+    shell: docker build -t {{ IMAGE }}:{{ VER }} .
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Checking Docker Image
+    shell: docker images
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Installing pip
+    yum:
+      name: pip
+      state: present
+
+  - name: Installing docker-py
+    shell: pip install docker-py
+
+  - name: Log into DockerHub
+    docker_login:
+      username: aamirs
+      password: "{{ docker_pass }}"
+    register: shell_result
+  - debug:
+      var: shell_result
+      
+  - name: Pushing docker image to DockerHub Private Repository
+    command: "{{ item }}"
+    with_items:
+    - docker tag {{ IMAGE  }}:{{ VER}} {{ DockerHub_repo }}:{{ VER }}
+    - docker push {{ DockerHub_repo }}:{{ VER}}
+    register: shell_result
+  - debug:
+      var: shell_result
+

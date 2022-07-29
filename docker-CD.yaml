@@ -4,8 +4,14 @@
   #remote_user: ec2-user
   #become: true
   #become_method: sudo
+  vars_files:
+       - docker_token.yml
   vars:
       vol: /tmp/myefs/docker_volume/
+      IMAGE: radical-weekdays-june-2022
+      WORKSPACE: /var/lib/jenkins/workspace/radical
+      DockerHub_repo: "aamirs/radical-private-repo"
+      VER: 9am
 
   tasks:
   - name: set fact here
@@ -27,24 +33,12 @@
     service:
       name: docker
       enabled: yes
-    # Please pull the dockerfile manually before running this playbook
-
-  - name: Ansible copy file to remote server
-    copy:
-      src: /root/ansible/Dockerfile
-      dest: /root/Dockerfile
-
-  - name: Build Docker Image
-    shell: docker build -t myweb:v1.0 .
-    register: shell_result
-  - debug:
-      var: shell_result
 
   - name: Creating test container
     command: "{{ item }}"
     with_items:
     - docker run -itd  --name=test_machine320"{{ random_number }}" centos
-    - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  myweb:v1.0
+    - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 {{ DockerHub_repo }}:{{ VER}}
     register: shell_result
   - debug:
       var: shell_result
