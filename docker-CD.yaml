@@ -39,6 +39,14 @@
       src: /root/ansible/docker_token.yml
       dest: /root/docker_token.yml
 
+  - name: Installing pip
+    yum:
+      name: pip
+      state: present
+
+  - name: Installing docker-py
+    shell: pip install docker-py
+
   - name: Log into DockerHub
     docker_login:
       username: aamirs
