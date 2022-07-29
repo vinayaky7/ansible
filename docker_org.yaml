@@ -1,6 +1,6 @@
 ---
 - name: This sets up a Docker server
-  hosts: ansibleclient1
+  hosts: radical-bastion
   #remote_user: ec2-user
   #become: true
   #become_method: sudo
@@ -28,6 +28,12 @@
       name: docker
       enabled: yes
     # Please pull the dockerfile manually before running this playbook
+
+  - name: Ansible copy file to remote server
+    copy:
+      src: /root/ansible/Dockerfile
+      dest: /root/Dockerfile
+
   - name: Build Docker Image
     shell: docker build -t myweb:v1.0 .
     register: shell_result
