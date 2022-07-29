@@ -34,6 +34,19 @@
       name: docker
       enabled: yes
 
+  - name: Ansible copy file to remote server
+    copy:
+      src: /root/ansible/docker_token.yml
+      dest: /root/docker_token.yml
+
+  - name: Log into DockerHub
+    docker_login:
+      username: aamirs
+      password: "{{ docker_pass }}"
+    register: shell_result
+  - debug:
+      var: shell_result
+
   - name: Creating test container
     command: "{{ item }}"
     with_items:
