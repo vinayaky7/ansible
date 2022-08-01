@@ -1,5 +1,5 @@
 ---
-- hosts: webservers
+- hosts: radical-bastion
   tasks:
   vars: 
     base_port: 8888

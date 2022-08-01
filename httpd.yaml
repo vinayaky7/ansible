@@ -1,6 +1,6 @@
 ---
 - name: This sets up an httpd webserver
-  hosts: webservers
+  hosts: radical-bastion
   vars_files:
        - secrets.yml
   vars:
@@ -35,10 +35,12 @@
     yum:
       name: git
       state: present
+
   - name: Cloning repository
     git:
        repo: 'https://{{gituser}}:{{gitpass}}@gitlab.com/andromeda99/html.git'
        dest: "{{ destdir }}"
+       
   - name: fetching Public IP
     shell: host myip.opendns.com resolver1.opendns.com | grep address
     register: shell_result
