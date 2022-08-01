@@ -1,17 +1,16 @@
  ---
- - name: Configuring resources via role
-   hosts: radical-bastion
+  hosts: radical-bastion
 
-   vars_files:
+  vars_files:
        - /root/ansible/docker_token.yml
        - /root/ansible/myrole/vars/name_vars.yml
 
-   vars:
+  vars:
     vol: /tmp/myefs/docker_volume/
     IMAGE: radical-weekdays-june-2022
     WORKSPACE: /var/lib/jenkins/workspace/radical
     DockerHub_repo: "aamirs/radical-private-repo"
     VER: 9am
 
-    roles: 
-       - /root/ansible/myrole
+  roles: 
+      - /root/ansible/myrole
