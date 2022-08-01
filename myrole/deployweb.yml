@@ -1,4 +1,6 @@
- - hosts: radical-bastion
+ ---
+ - name: Configuring resources via role
+   hosts: radical-bastion
 
    vars_files:
        - /root/ansible/docker_token.yml
@@ -11,6 +13,5 @@
     DockerHub_repo: "aamirs/radical-private-repo"
     VER: 9am
 
-   tasks:
-     roles: 
+    roles: 
        - /root/ansible/myrole
