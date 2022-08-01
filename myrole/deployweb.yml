@@ -1,4 +1,5 @@
- ---
+---
+- name: Test
   hosts: radical-bastion
 
   vars_files:
