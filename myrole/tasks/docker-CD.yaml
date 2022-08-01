@@ -1,0 +1,66 @@
+---
+  vars_files:
+       - docker_token.yml
+  vars:
+      vol: /tmp/myefs/docker_volume/
+      IMAGE: radical-weekdays-june-2022
+      WORKSPACE: /var/lib/jenkins/workspace/radical
+      DockerHub_repo: "aamirs/radical-private-repo"
+      VER: 9am
+
+  tasks:
+  - name: set fact here
+    set_fact:
+      random_number: "{{ 100 | random }}"
+    run_once: yes
+
+  - name: Installing Docker
+    yum:
+      name: docker
+      state: present
+
+  - name: Start Docker Service
+    service:
+      name: docker
+      state: started
+
+  - name: Enable Docker Service
+    service:
+      name: docker
+      enabled: yes
+
+  - name: Ansible copy file to remote server
+    copy:
+      src: /root/ansible/docker_token.yml
+      dest: /root/docker_token.yml
+
+  - name: Installing pip
+    yum:
+      name: pip
+      state: present
+
+  - name: Installing docker-py
+    shell: pip install docker-py
+
+  - name: Log into DockerHub
+    docker_login:
+      username: aamirs
+      password: "{{ docker_pass }}"
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Creating test container
+    command: "{{ item }}"
+    with_items:
+    - docker run -itd  --name=test_machine320"{{ random_number }}" centos
+    - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 {{ DockerHub_repo }}:{{ VER}}
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Testing
+    shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
+    register: shell_result
+  - debug:
+      msg: Testing URL is http://{{ shell_result.stdout }}:320{{ random_number }}/webapp

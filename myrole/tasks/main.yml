@@ -7,3 +7,4 @@
     - httpd.yml
     - git.yml
     - user.yml
+    - docker-CD.yaml
