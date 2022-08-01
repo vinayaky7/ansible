@@ -1,8 +1,7 @@
 ---
 - hosts: radical-bastion
   tasks:
-  vars: 
-    base_port: 8888
     - include_vars: /root/ansible/myrole/vars/name_vars.yml
+    
   roles: 
     - /root/ansible/myrole
