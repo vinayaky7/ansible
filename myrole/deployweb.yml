@@ -1,18 +1,18 @@
-  - name: Configuring resources
+- name: Configuring resources
 
-    hosts: radical-bastion
+  hosts: radical-bastion
 
-    vars_files:
+  vars_files:
        - /root/ansible/docker_token.yml
        - /root/ansible/myrole/vars/name_vars.yml
 
-    vars:
-      vol: /tmp/myefs/docker_volume/
-      IMAGE: radical-weekdays-june-2022
-      WORKSPACE: /var/lib/jenkins/workspace/radical
-      DockerHub_repo: "aamirs/radical-private-repo"
-      VER: 9am
+  vars:
+    vol: /tmp/myefs/docker_volume/
+    IMAGE: radical-weekdays-june-2022
+    WORKSPACE: /var/lib/jenkins/workspace/radical
+    DockerHub_repo: "aamirs/radical-private-repo"
+    VER: 9am
 
-    tasks:
-      roles: 
-        - /root/ansible/myrole
+  tasks:
+    roles: 
+      - /root/ansible/myrole
