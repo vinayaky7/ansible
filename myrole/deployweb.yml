@@ -6,4 +6,3 @@
     - include_vars: /root/ansible/myrole/vars/name_vars.yml
   roles: 
     - /root/ansible/myrole
-    - /root/ansible/radical
