@@ -40,4 +40,3 @@ EXPOSE 80
 
 CMD ["-D", "FOREGROUND"]
 ENTRYPOINT ["/usr/sbin/httpd"]
-
