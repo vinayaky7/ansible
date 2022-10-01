@@ -9,7 +9,7 @@
   vars:
       vol: "/tmp/myefs/docker_volume/"
       IMAGE: "radical-weekdays-june-2022"
-      WORKSPACE: "/var/lib/jenkins/workspace/radical"
+      WORKSPACE: "/var/lib/jenkins/workspace/my-declarative-pipeline"
       DockerHub_repo: "aamirs/radical-private-repo"
       VER: "9am"
 
@@ -37,7 +37,7 @@
   - name: Build Docker Image
     args:
       chdir: "{{ WORKSPACE }}"
-    shell: docker build -t {{ IMAGE }}:{{ VER }} .
+    shell: docker build -t {{ IMAGE }}:{{ VER }} . --build-arg workspace={{ WORKSPACE }}
     register: shell_result
   - debug:
       var: shell_result
