@@ -8,11 +8,11 @@
        - docker_token.yml
   vars:
       vol: "/tmp/myefs/docker_volume/"
-      IMAGE: "radical-weekdays-june-2022"
+      IMAGE: "radical-weekdays-july-10am-2022"
       ANISBLE_WORKSPACE: /root/ansible
       Jenkins_WORKSPACE: /var/lib/jenkins/workspace/my-declarative-pipeline
       DockerHub_repo: "aamirs/radical-private-repo"
-      VER: "9am"
+      VER: "1.0.0"
 
   tasks:
   - name: set fact here
