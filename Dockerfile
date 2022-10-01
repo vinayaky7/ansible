@@ -25,9 +25,9 @@ RUN chmod -R 755 /home/$user
 
 #COPY /var/tmp/index.html /tmp
 
-COPY ${workspace}/webapp/target/webapp.war /var/www/html/
+COPY /${workspace}/webapp/target/webapp.war /var/www/html/
 
-COPY ${workspace}/webapp/target/webapp /var/www/html/
+COPY /${workspace}/webapp/target/webapp /var/www/html/
 
 #USER $user
 
