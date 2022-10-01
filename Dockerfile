@@ -5,7 +5,6 @@ MAINTAINER "Aamir M. Shaikh"
 ARG user=appuser
 ARG uid=1010
 ARG gid=1010
-ARG workspace=/var/lib/jenkins/workspace/my-declarative-pipeline
 
 RUN yum install httpd -y
 
@@ -25,9 +24,9 @@ RUN chmod -R 755 /home/$user
 
 #COPY /var/tmp/index.html /tmp
 
-COPY /${workspace}/webapp/target/webapp.war /var/www/html/
+COPY webapp.war /var/www/html/
 
-COPY /${workspace}/webapp/target/webapp /var/www/html/
+COPY webapp /var/www/html/
 
 #USER $user
 

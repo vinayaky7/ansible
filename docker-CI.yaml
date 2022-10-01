@@ -10,7 +10,7 @@
       vol: "/tmp/myefs/docker_volume/"
       IMAGE: "radical-weekdays-june-2022"
       ANISBLE_WORKSPACE: "/root/ansible"
-      WORKSPACE: "/var/lib/jenkins/workspace/my-declarative-pipeline"
+      Jenkins_WORKSPACE: "/var/lib/jenkins/workspace/my-declarative-pipeline"
       DockerHub_repo: "aamirs/radical-private-repo"
       VER: "9am"
 
@@ -35,10 +35,20 @@
       name: docker
       enabled: yes
 
+  - name: Ansible copy file to remote server
+    copy:
+      src: {{ Jenkins_WORKSPACE }}/webapp/target/webapp.war
+      dest: {{ ANISBLE_WORKSPACE }}
+
+  - name: Ansible copy file to remote server
+    copy:
+      src: {{ Jenkins_WORKSPACE }}/webapp/target/webapp
+      dest: {{ ANISBLE_WORKSPACE }}
+
   - name: Build Docker Image
     args:
       chdir: "{{ ANISBLE_WORKSPACE }}"
-    shell: docker build -t {{ IMAGE }}:{{ VER }} . --build-arg workspace={{ WORKSPACE }}
+    shell: docker build -t {{ IMAGE }}:{{ VER }} . 
     register: shell_result
   - debug:
       var: shell_result
