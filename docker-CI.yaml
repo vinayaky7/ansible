@@ -39,11 +39,17 @@
     copy:
       src: "{{ Jenkins_WORKSPACE }}/webapp/target/webapp.war"
       dest: "{{ ANISBLE_WORKSPACE }}"
+    register: shell_result
+  - debug:
+      var: shell_result
 
   - name: Ansible copy file to remote server
     copy:
       src: "{{ Jenkins_WORKSPACE }}/webapp/target/webapp"
       dest: "{{ ANISBLE_WORKSPACE }}"
+    register: shell_result
+  - debug:
+      var: shell_result
 
   - name: Build Docker Image
     args:
