@@ -37,12 +37,12 @@
 
   - name: Ansible copy file to remote server
     copy:
-      src: {{ Jenkins_WORKSPACE }}/webapp/target/webapp.war
+      src: "{{ Jenkins_WORKSPACE }}"/webapp/target/webapp.war
       dest: {{ ANISBLE_WORKSPACE }}
 
   - name: Ansible copy file to remote server
     copy:
-      src: {{ Jenkins_WORKSPACE }}/webapp/target/webapp
+      src: "{{ Jenkins_WORKSPACE }}"/webapp/target/webapp
       dest: {{ ANISBLE_WORKSPACE }}
 
   - name: Build Docker Image
