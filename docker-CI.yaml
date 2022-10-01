@@ -9,8 +9,8 @@
   vars:
       vol: "/tmp/myefs/docker_volume/"
       IMAGE: "radical-weekdays-june-2022"
-      ANISBLE_WORKSPACE: "/root/ansible"
-      Jenkins_WORKSPACE: "/var/lib/jenkins/workspace/my-declarative-pipeline"
+      ANISBLE_WORKSPACE: /root/ansible
+      Jenkins_WORKSPACE: /var/lib/jenkins/workspace/my-declarative-pipeline
       DockerHub_repo: "aamirs/radical-private-repo"
       VER: "9am"
 
@@ -37,12 +37,12 @@
 
   - name: Ansible copy file to remote server
     copy:
-      src: "{{ Jenkins_WORKSPACE }}"/webapp/target/webapp.war
+      src: {{ Jenkins_WORKSPACE }}/webapp/target/webapp.war
       dest: {{ ANISBLE_WORKSPACE }}
 
   - name: Ansible copy file to remote server
     copy:
-      src: "{{ Jenkins_WORKSPACE }}"/webapp/target/webapp
+      src: {{ Jenkins_WORKSPACE }}/webapp/target/webapp
       dest: {{ ANISBLE_WORKSPACE }}
 
   - name: Build Docker Image
