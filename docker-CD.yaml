@@ -7,14 +7,11 @@
   vars_files:
        - docker_token.yml
   vars:
-      vol: /tmp/myefs/docker_volume/
-      IMAGE: radical-weekdays-june-2022
-      WORKSPACE: /var/lib/jenkins/workspace/radical
       DockerHub_repo: "aamirs/radical-private-repo"
       VER: 9am
 
   tasks:
-  
+
   - name: set fact here
     set_fact:
       random_number: "{{ 100 | random }}"
