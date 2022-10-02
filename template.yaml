@@ -11,4 +11,4 @@
         dest: /tmp/hello_world.txt
       register: shell_result
     - debug:
-      var: shell_result
+        var: shell_result
