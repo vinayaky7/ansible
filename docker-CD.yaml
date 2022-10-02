@@ -14,6 +14,7 @@
       VER: 9am
 
   tasks:
+  
   - name: set fact here
     set_fact:
       random_number: "{{ 100 | random }}"

@@ -15,11 +15,6 @@
       VER: "1.0.0"
 
   tasks:
-  - name: set fact here
-    set_fact:
-      random_number: "{{ 100 | random }}"
-    run_once: yes
-
   - name: Installing Docker
     yum:
       name: docker
