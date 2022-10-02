@@ -2,14 +2,14 @@
 - yum: pkg=httpd state=installed
 
 - name: Start httpd service
-    service:
-      name: httpd
-      state: started
+  service:
+    name: httpd
+    state: started
 
 - name: Enable service httpd
-    service:
-      name: httpd
-      enabled: yes
+  service:
+    name: httpd
+    enabled: yes
  
 - template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
 
