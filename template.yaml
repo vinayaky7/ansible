@@ -9,3 +9,6 @@
       template:
         src: hello_world.j2
         dest: /tmp/hello_world.txt
+      register: shell_result
+    - debug:
+      var: shell_result
