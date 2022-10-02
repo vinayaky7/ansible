@@ -4,6 +4,10 @@
 #    inline_variable: 'hello again'
   vars_files:
        - name_vars.yaml
+  vars:
+      my_time: "12pm"
+      my_place: "Pune"
+      
   tasks:
     - name: Ansible Template Example
       template:
