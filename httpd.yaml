@@ -1,6 +1,6 @@
 ---
 - name: This sets up an httpd webserver
-  hosts: radical-bastion
+  hosts: ansibleclient1
   vars_files:
        - secrets.yml
   vars:
@@ -45,6 +45,11 @@
     shell: host myip.opendns.com resolver1.opendns.com | grep address
     register: shell_result
   - debug:
-      var: shell_result    
-    
+      var: shell_result   
+
+  - name: Testing the Webservice
+    shell: curl -kv http://{{ shell_result.stdout }}
+    register: shell_result_webservice
+  - debug:
+      var: shell_result_webservice   
 
