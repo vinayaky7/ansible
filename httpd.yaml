@@ -42,10 +42,15 @@
        dest: "{{ destdir }}"
        
   - name: fetching Public IP
-    shell: host myip.opendns.com resolver1.opendns.com | grep address
+    shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
     register: shell_result
   - debug:
-      var: shell_result   
+      var: shell_result  
+
+  - name: Install git packages
+    yum:
+      name: elinks
+      state: present 
 
   - name: Testing the Webservice
     shell: curl -kv http://{{ shell_result.stdout }}
