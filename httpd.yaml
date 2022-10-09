@@ -53,7 +53,7 @@
       state: present 
 
   - name: Testing the Webservice
-    shell: elinks -kv http://{{ shell_result.stdout }}
+    shell: elinks http://{{ shell_result.stdout }}
     register: shell_result_webservice
   - debug:
       var: shell_result_webservice   
