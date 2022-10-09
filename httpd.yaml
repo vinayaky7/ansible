@@ -47,13 +47,13 @@
   - debug:
       var: shell_result  
 
-  - name: Install git packages
+  - name: Install elinks packages
     yum:
       name: elinks
       state: present 
 
   - name: Testing the Webservice
-    shell: curl -kv http://{{ shell_result.stdout }}
+    shell: elinks -kv http://{{ shell_result.stdout }}
     register: shell_result_webservice
   - debug:
       var: shell_result_webservice   
