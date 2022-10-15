@@ -1,6 +1,6 @@
 ---
-- name: Test
-  hosts: radical-bastion
+- name: Running myrole end-to-end Deployment(CD)
+  hosts: ansibleclient1
 
   vars_files:
        - /root/ansible/docker_token.yml
@@ -8,10 +8,10 @@
 
   vars:
     vol: /tmp/myefs/docker_volume/
-    IMAGE: radical-weekdays-june-2022
-    WORKSPACE: /var/lib/jenkins/workspace/radical
+    IMAGE: radical-weekdays-aug-12pm-2022
+    WORKSPACE: /var/lib/jenkins/workspace/docker-ci
     DockerHub_repo: "aamirs/radical-private-repo"
-    VER: 9am
+    VER: "1.0.0"
 
   roles: 
       - /root/ansible/myrole
