@@ -1,6 +1,6 @@
 ---
 - name: inline secret variable demonstration
-  hosts: radical-bastion
+  hosts: ansibleclient1
   gather_facts: false
 
   vars:
