@@ -1,6 +1,6 @@
 ---
 - name: This sets up a Docker server
-  hosts: radical-bastion
+  hosts: ansibleclient1
   #remote_user: ec2-user
   #become: true
   #become_method: sudo
@@ -8,7 +8,7 @@
        - docker_token.yml
   vars:
       DockerHub_repo: "aamirs/radical-private-repo"
-      VER: 9am
+      VER: "1.0.0"
 
   tasks:
 
