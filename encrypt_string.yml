@@ -6,16 +6,16 @@
   vars:
     my_secret_var: !vault |
           $ANSIBLE_VAULT;1.1;AES256
-          66656665643661393831373232656665623332323835353634323834353561613937313165363861
-          3031323064623262643066343035653139616530303136360a303931393033386163616433633764
-          39303736643064643933343265383139353764356566646138336161363932653362636164353533
-          3062336566393036650a356438643434326536663763643262303231643965653235616534653431
-          3036
+          33653131386231373134396566386138323135363833393139306335633665666362313136336231
+          6237316263356466643435333739343430643633346566660a663530623633613730386633386362
+          35643563333733643333393931336430336465326537353939636330326330333532643731303966
+          3238323963356562650a366133313761313464613535346362316136666130383662323663313162
+          6435
   
   tasks:
     - name: print the secure variable
       debug:
-        msg: "My pass is {{my_secret_var}}"
+        msg: "My pass is {{ my_secret_var }}"
 
     - name: print the secure variable
       debug:
@@ -23,13 +23,13 @@
 
 
     - name: Using command to print my_secret
-      command: /usr/bin/echo "My pass is {{my_secret_var}}"
+      command: /usr/bin/echo "My pass is {{ my_secret_var }}"
       register: shell_result
     - debug:
         var: shell_result
 
     - name: Using shell to print my_secret
-      shell: echo "My pass is {{my_secret_var}}"
+      shell: echo "My pass is {{ my_secret_var }}"
       register: shell_output
     - debug:
         var: shell_output
