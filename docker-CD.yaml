@@ -16,6 +16,9 @@
     set_fact:
       random_number: "{{ 100 | random }}"
     run_once: yes
+    register: shell_result
+  - debug:
+      var: shell_result
 
   - name: Installing Docker
     yum:
