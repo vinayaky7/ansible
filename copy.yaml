@@ -4,3 +4,8 @@
     copy:
       src: /root/ansible/sample.txt
       dest: /tmp 
+    register: my_result
+  - debug:
+      var: my_result
+    
+    
