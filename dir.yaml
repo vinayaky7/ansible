@@ -5,4 +5,9 @@
     file:
       path: /tmp/devops_directory
       state: directory
-      mode: "u=rwx,g=rwx,o=rwx"
+      mode: "u=rw,g=rw,o=r"
+      owner: jorda
+      group: jordan
+    register: my_result
+  - debug:
+      var: my_result
