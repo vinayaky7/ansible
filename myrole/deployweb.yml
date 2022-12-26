@@ -11,7 +11,7 @@
     IMAGE: radical-weekdays-aug-12pm-2022
     WORKSPACE: /var/lib/jenkins/workspace/docker-ci
     DockerHub_repo: "aamirs/radical-private-repo"
-    VER: "1.0.0"
+    VER: "1.1.1"
 
   roles: 
       - /root/ansible/myrole
