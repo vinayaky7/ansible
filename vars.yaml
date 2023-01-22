@@ -8,7 +8,15 @@
        - South America
        - North America
        - Europe
-     var3: [Africa, Asia, South America, North America, Europe]
+     var3: [country=Africa, Asia, South America, North America, Europe]
+
+     users:
+      alice:
+        name: Alice Appleworth
+        telephone: 123-456-7890
+      bob:
+        name: Bob Bananarama
+        telephone: 987-654-3210
    
    tasks:
    - name: Ansible Variable Basic Usage
@@ -33,3 +41,8 @@
 
    - debug:
        var: shell_result
+
+   - name: Printing the dictionary
+   - debug:
+      msg: "{{item.key}}:{{item.value}}"
+      with_items: "{{ users }}"
