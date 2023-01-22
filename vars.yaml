@@ -43,6 +43,6 @@
        var: shell_result
 
    - name: Printing the dictionary
-   - debug:
-      msg: "{{item.key}}:{{item.value}}"
+     debug:
+       msg: "{{item.key}}:{{item.value}}"
      loop: "{{ lookup('dict', users) }}"
