@@ -8,11 +8,11 @@
        - docker_token.yml
   vars:
       vol: "/tmp/myefs/docker_volume/"
-      IMAGE: "radical-weekdays-aug-12pm-2022"
+      IMAGE: "radical-weekdays-nov-10am-2022"
       ANSIBLE_WORKSPACE: /root/ansible
-      Jenkins_WORKSPACE: /var/lib/jenkins/workspace/docker-ci
+      Jenkins_WORKSPACE: /var/lib/jenkins/workspace/dev-pipeline
       DockerHub_repo: "aamirs/radical-private-repo"
-      VER: "1.0.0"
+      tag: "nov-2022-0.0.1"
 
   tasks:
   - name: Installing Docker
@@ -49,7 +49,7 @@
   - name: Build Docker Image
     args:
       chdir: "{{ ANSIBLE_WORKSPACE }}"
-    shell: docker build -t {{ IMAGE }}:{{ VER }} . 
+    shell: docker build -t {{ IMAGE }}:{{ tag }} . 
     register: shell_result
   - debug:
       var: shell_result
@@ -79,8 +79,8 @@
   - name: Pushing docker image to DockerHub Private Repository
     command: "{{ item }}"
     with_items:
-    - docker tag {{ IMAGE  }}:{{ VER}} {{ DockerHub_repo }}:{{ VER }}
-    - docker push {{ DockerHub_repo }}:{{ VER}}
+    - docker tag {{ IMAGE  }}:{{ tag }} {{ DockerHub_repo }}:{{ tag }}
+    - docker push {{ DockerHub_repo }}:{{ tag }}
     register: shell_result
   - debug:
       var: shell_result
