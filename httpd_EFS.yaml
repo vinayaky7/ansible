@@ -45,7 +45,7 @@
      var: shell_result_efs
 
   - name: Mouting EFS Volume
-    shell: {{ mount_com }}
+    shell: "{{ mount_com }}"
     when: shell_result_efs.rc != 0
     register: shell_result
   - debug:
