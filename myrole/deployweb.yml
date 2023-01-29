@@ -8,10 +8,10 @@
 
   vars:
     vol: /tmp/myefs/docker_volume/
-    IMAGE: radical-weekdays-aug-12pm-2022
-    WORKSPACE: /var/lib/jenkins/workspace/docker-ci
+    IMAGE: radical-weekend-nov-10am-2022
+    WORKSPACE: /var/lib/jenkins/workspace/dev-pipeline
     DockerHub_repo: "aamirs/radical-private-repo"
-    VER: "1.1.1"
+    VER: "0.0.1"
 
   roles: 
       - /root/ansible/myrole
