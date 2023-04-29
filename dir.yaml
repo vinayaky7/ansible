@@ -6,7 +6,7 @@
       path: /tmp/devops_directory
       state: directory
       mode: "u=rw,g=rw,o=r"
-      owner: jorda
+      owner: jordan
       group: jordan
     register: my_result
   - debug:
