@@ -10,36 +10,41 @@
     yum:
       name: httpd
       state: present
+    register: shell_result
+  - debug:
+      var: shell_result 
       
   - name: Start httpd service
     service:
       name: httpd
       state: started
+    register: shell_result
+  - debug:
+      var: shell_result 
 
   - name: Enable service httpd
     service:
       name: httpd
       enabled: yes
-      
-  - name: running random commands
-    command: /usr/bin/cat /root/.ssh/authorized_keys
-#  - name: creating index file
-#    file:
-#      path: "/var/www/html/index.html"
-#      state: touch
-#  - name: echoing text
-#    shell: printf 'Hello' >> /var/www/html/index.html
-#    register: shell_result
+    register: shell_result
+  - debug:
+      var: shell_result 
 
   - name: Install git packages
     yum:
       name: git
       state: present
+    register: shell_result
+  - debug:
+      var: shell_result 
 
   - name: Cloning repository
     git:
-       repo: 'https://{{gituser}}:{{gitpass}}@gitlab.com/andromeda99/html.git'
+       repo: 'https://{{ gituser }}:{{ gitpass }}@gitlab.com/andromeda99/html.git'
        dest: "{{ destdir }}"
+    register: shell_result
+  - debug:
+      var: shell_result 
        
   - name: fetching Public IP
     shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
