@@ -56,6 +56,12 @@
   - debug:
       var: shell_result
 
+  - name: Pulling the latest image
+    shell: docker pull {{ DockerHub_repo }}:{{ VER}}
+    register: shell_result
+  - debug:
+      var: shell_result
+
   - name: Creating test container
     command: "{{ item }}"
     with_items:
