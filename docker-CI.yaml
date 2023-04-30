@@ -8,11 +8,11 @@
        - docker_token.yml
   vars:
       vol: "/tmp/myefs/docker_volume/"
-      IMAGE: "radical-weekdays-nov-10am-2022"
+      IMAGE: "radical-weekend-april-12pm-2023"
       ANSIBLE_WORKSPACE: /root/ansible
-      Jenkins_WORKSPACE: /var/lib/jenkins/workspace/dev-pipeline
+      Jenkins_WORKSPACE: /var/lib/jenkins/workspace/dev-docker
       DockerHub_repo: "aamirs/radical-private-repo"
-      tag: "nov-2022-0.0.1"
+      tag: "april-2023-1.0"
 
   tasks:
   - name: Installing Docker
