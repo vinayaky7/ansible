@@ -5,7 +5,7 @@
        - secrets.yml
   vars:
        - destdir: /var/www/html
-       - mount_com: mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-045952702fc001f0a.efs.us-west-2.amazonaws.com:/ /tmp/myefs
+       - mount_com: mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-029d016cc22211078.efs.us-west-2.amazonaws.com:/ /tmp/myefs
   tasks:
   - name: Install apache packages
     yum:
@@ -38,7 +38,7 @@
      var: shell_result_myefs
 
   - name: Checking EFS Dir
-    shell: ls /tmp/myefs/docker_volume
+    shell: ls /tmp/myefs/myworkspace
     register: shell_result_efs
     ignore_errors: yes
   - debug:
