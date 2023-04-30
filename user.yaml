@@ -1,10 +1,20 @@
 ---
 - hosts: jenkins-slave
+
+  vars:
+    my_secret_var: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          39306132326664663132346362383033623563383761363833386539333134336335353932346331
+          3665613637633235396565326132656464623434303534330a356131386530396334366265353534
+          38643962363164646630333064323836356133303631353361633066633439303436633134633435
+          3965376530393761620a323861333834346130313363386464653036376431346534626233316635
+          6366
+
   tasks:
   - name: Create a login user
     user:
       name: jordan
-      password: "supp0rt"
+      password: "{{ my_secret_var }}""
       state: present
       shell: /bin/bash       # Defaults to /bin/bash
       createhome: yes        # Defaults to yes
