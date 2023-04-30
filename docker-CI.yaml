@@ -35,6 +35,7 @@
       src: "{{ Jenkins_WORKSPACE }}/webapp/target/webapp.war"
       dest: "{{ ANSIBLE_WORKSPACE }}"
       recurse: true
+      remote_src: yes
     register: shell_result
   - debug:
       var: shell_result
@@ -44,6 +45,7 @@
       src: "{{ Jenkins_WORKSPACE }}/webapp/target/webapp"
       dest: "{{ ANSIBLE_WORKSPACE }}"
       recurse: true
+      remote_src: yes
     register: shell_result
   - debug:
       var: shell_result
