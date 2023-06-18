@@ -1,0 +1,140 @@
+######run default conf to OtherTeam servers
+cat  pmtaTemplateOtherTeam
+cat othernservera.txt (inventory)
+ansible all -m copy -a "src=./pmtaTemplateOtherTeam dest=/home/khapchi/cfg_data/pmtaTemplate" -i othernservera.txt		(Copy teplate to all servers)
+ansible all -m shell -a 'sudo sh /home/khapchi/cfg_data/cfgPmta.sh; sudo sh /home/khapchi/cfg_data/dkimUpdate.sh' -i othernservera.txt
+ansible all -m shell -a 'service pmta restart; service pmtahttp restart' -i othernservera.txt
+iptables -F
+
+
+
+##########Team V Gmail configuration
+
+<domain gmail.com>
+dk-sign yes
+dkim-sign yes
+dkim-algorithm rsa-sha1
+retry-after 1m
+bounce-after 24h
+max-smtp-out 10000
+max-msg-per-connection 100000
+smtp-421-means-mx-unavailable yes
+</domain>
+
+
+cd /home/supernoc/ansible/vinn
+cat pmtaTemplate  (here change gmail configuration)
+ansible all -m copy -a "src=./pmtaTemplate dest=/home/khapchi/cfg_data/pmtaTemplate" -i nservera.txt		(Copy teplate to all servers)
+ansible all -m shell -a 'sudo sh /home/khapchi/cfg_data/cfgPmta.sh; sudo sh /home/khapchi/cfg_data/dkimUpdate.sh' -i nservera.txt
+ansible all -m shell -a 'service pmta restart; service pmtahttp restart' -i nservera.txt
+
+
+
+
+:g/dummy\/.private/d
+
+
+echo `yum install -y selinux-policy-targeted`
+echo `yum reinstall -y selinux-policy-targeted`
+echo `touch /.autorelabel`
+echo`sed -i 's/disabled/enforcing/g' /etc/selinux/config`
+echo`sed -i 's/permissive/enforcing/g' /etc/selinux/config`
+
+
+grep -f swapserver.txt mainInventory.txt >format.txt
+cat format.txt
+cat tls.yml
+ansible-playbook tls.yml -i format.txt
+
+grep -f swapserver.txt mainInventory.txt >format.txt
+ansible all -m shell -a 'grep "dk-sign yes" /etc/pmta/config' -i format.txt
+ansible all -m shell -a 'ping' -i format.txt
+
+ansible all -m shell -a 'grep "SELINUX" /etc/sysconfig/selinux' -i format.txt
+
+ansible all -m shell -a 'iptables -F' -i format.txt
+
+
+ansible all -m shell -a 'grep "add-received-header false" /etc/pmta/config' -i format.txt
+
+===================================================================================================================================================================================================================================================================================
+ansible all -m shell -a 'sed -i "/source 127.0.0.1/a add-received-header false" /etc/pmta/config; service pmta restart; service pmtahttp restart' -i format.txt
+
+ansible all -m shell -a 'sed -i "/<domain gmail.com>/a dk-sign yes" /etc/pmta/config; service pmta restart; service pmtahttp restart' -i format.txt
+ansible all -m shell -a 'sed -i "/source dkim-sign yes/a dkim-algorithm rsa-sha1" /etc/pmta/config' -i nservera.txt
+
+ansible-playbook pass.yml -i format.txt
+
+ansible -m ping -i format.txt
+
+
+Default passwd reset path
+/home/supernoc/ansible/
+
+P_input.txt
+P_process.py
+
+/home/supernoc/ansible/prakash
+cat nservers.txt
+anrs7365_91.246.221.10 ansible_host=91.246.221.10 ansible_ssh_pass=r0cKPu1P01 ansible_connection=ssh ansible_port=22 ansible_user=root
+
+sudo ansible-playbook pass.yml -i nservers.txt
+sudo ansible-playbook rebot.yml -i nservers.txt
+sudo ansible-playbook pass1.yml -i nservers.txt
+sudo ansible -i nserver.txt -m ping all
+ansible all -m shell -a 'grep "SELINUX" /etc/sysconfig/selinux' -i nserver.txt
+
+
+
+  134  ansible --version
+  135  ssh-keygen
+  136  ssh-copy-id -i root@10.10.2.126
+  137  ping 10.10.0.126
+  138  ssh-copy-id -i root@10.10.0.126
+  139  ssh-copy-id -i root@10.10.0.224
+  140  vi /etc/ansible/hosts
+  141  ansible -m ping 'web'
+  142  ansible -m command -a "useradd=abc" 'web'
+  143  ansible -m command -a "useradd abc" 'web'
+  144  ansible -m command -a "yum install rsync -y" 'web'
+  145  cd
+  146  touch a
+  147  ansible -m ping
+  148  ansible -m copy a /tmp/ 'web'
+  149  ansible -m copy - a "src=/root/a dest=/tmp"
+  150  ansible web  -m copy - a "src=/root/a dest=/tmp"
+  151  ansible web -m copy -a "src=/root/a dest=/tmp"
+  152  ansible web -m file -a "dest=/tmp/a mode=777"
+  153  ansible webserver -m yum -a "name=acme state=present"
+  154  ansible web -m yum -a "name=acme state=present"
+  155  ansible web -m yum -a "name=httpd state=latest"
+  156  ansible web -m yum -a "name=php state=latest"
+  157  ansible web -m yum -a "name=mariadb,postfix state=latest"
+  158  ansible --version
+  159  ansible web -a  "name=postfix state=stopped"
+  160  ansible web -m systemd -a  "name=postfix state=stopped"
+  161  ansible web -m service -a  "name=postfix state=started"
+  162  ansible web -m yum -a "name=squid state=latest"
+  163  cd /etc/ansible/
+  164  ll
+  165  vi hosts
+  166  history
+
+
+cat hosts
+[all:vars]
+ansible_connection=ssh
+ansible_ssh_user=root
+ansible_ssh_pass=sqPBP6zGcRd79ktT
+
+[config]
+173.208.206.170
+212.129.0.156
+134.119.195.106
+
+[password]
+185.134.49.101
+91.224.40.101
+91.224.40.12
+91.224.40.13
+
